@@ -75,4 +75,5 @@ def rec_loop():
 ##### Cleanup #####
 # Close the client socket
 send_socket.close()
+rec_socket.close()
 ##### End Cleanup #####

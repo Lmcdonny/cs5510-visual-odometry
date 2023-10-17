@@ -14,7 +14,7 @@ car = YB_Pcb_Car.YB_Pcb_Car()
 
 ##### Network Setup #####
 # This is where you will put the ip of the ROBOT
-server_socket, receive_socket = init_net.get_rec_sock(Net_Info.ROBOT_IP, Net_Info.CONTROL_PORT)
+server_socket, rec_socket = init_net.get_rec_sock(Net_Info.ROBOT_IP, Net_Info.CONTROL_PORT)
 
 # This is where you will put the ip of your control device
 send_socket = init_net.get_send_sock(Net_Info.CLIENT_IP, Net_Info.IMAGE_PORT)
@@ -27,7 +27,7 @@ def send_loop():
 def rec_loop():
     while True:
         # Receive data from the client
-        data = receive_socket.recv(1024)
+        data = rec_socket.recv(1024)
         data = data.decode('utf-8')
 
         if data == Commands.FORWARD:
@@ -57,7 +57,7 @@ control_loop.join()
 
 ##### Cleanup #####
 # Close the client and server sockets
-receive_socket.close()
+rec_socket.close()
 server_socket.close()
 
 # Terminate the car with extreme prejudice
