@@ -21,9 +21,15 @@ send_socket = init_net.get_send_sock(Net_Info.CLIENT_IP, Net_Info.IMAGE_PORT)
 ##### End Network Setup #####
 
 ##### Operating Loop(s) #####
+'''
+This is in charge of sending images to the client
+'''
 def send_loop():
     return
 
+'''
+This is in charge of receiving commands from the client and executing them
+'''
 def rec_loop():
     while True:
         # Receive data from the client
@@ -42,6 +48,7 @@ def rec_loop():
             car.Car_Stop()
         elif data == Commands.QUIT:
             car.Car_Stop()
+            # TODO: Make break other loop somehow
             break
 
 

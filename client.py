@@ -2,7 +2,6 @@
 This is what you run to control the robot.
 '''
 from pynput import keyboard
-import multiprocessing
 from utils import Commands
 from utils import init_net
 from utils import Net_Info
@@ -13,7 +12,6 @@ send_socket = init_net.get_send_sock(Net_Info.ROBOT_IP, Net_Info.CONTROL_PORT)
 
 # This is where you will put the ip of your control device
 rec_socket = init_net.get_rec_sock(Net_Info.CLIENT_IP, Net_Info.IMAGE_PORT)
-
 ##### End Network Setup #####
 
 ###### Control Commands #####
@@ -59,6 +57,9 @@ def on_release(key):
 ###### End Control Commands #####  
 
 ##### Operating Loop(s) #####
+'''
+This is in charge of sending commands to the robot
+'''
 def send_loop():
     # Pynput listener
     with keyboard.Listener(
@@ -66,6 +67,9 @@ def send_loop():
             on_release=on_release) as listener:
         listener.join()
 
+'''
+This is in charge of receiving images from the robot
+'''
 def rec_loop():
     return
 
