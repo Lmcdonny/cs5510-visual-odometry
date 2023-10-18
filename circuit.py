@@ -2,19 +2,25 @@ import picamera
 from Car import Car
 import time
 
+def circ_leg():
+    car.control_car(50, 50)
+    time.sleep(3)
+    car.control_car(50, -50)
+    time.sleep(3)
+
 # setup
 car = Car()
 
-# Go in circle and record
+# Go in circuit and record
 # record
 camera = picamera.PiCamera()
-camera.resolution = (640, 480)
+camera.resolution = (1280, 720)
 camera.start_recording('my_video.h264')
+camera.framerate(30)
 
-# circle
-car.control_car(50, 10)
-
-time.sleep(3)
+# circuit
+for i in range(4):
+    circ_leg()
 
 car.stop()
 camera.stop_recording()
