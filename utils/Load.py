@@ -9,7 +9,7 @@ def load(file_path):
     # Check if the video file was successfully opened
     if not cap.isOpened():
         print("Error: Could not open video.")
-        exit()
+        return None
 
     frames = []
 
