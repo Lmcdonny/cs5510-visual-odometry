@@ -2,27 +2,56 @@ import picamera
 from Car import Car
 import time
 
-MAX_SPEED = 75
-TURN_SPEED = 100
+MAX_LEFT = 45
+MAX_RIGHT = 40
+TURN_SPEED = 80 
 
-def circ_leg():
-    car.control_car(MAX_SPEED, MAX_SPEED)
-    time.sleep(2)
+FORWARD_WAIT = 3
+TURN_WAIT = 1.1
+STEP_WAIT = 0.25
+
+DEBUG = False
+
+
+def circ_leg(debug=False):
+    # FORWARD
+    car.control_car(MAX_LEFT, MAX_RIGHT)
+    time.sleep(FORWARD_WAIT)
 
     car.stop()
-    time.sleep(.1)
-
+    time.sleep(STEP_WAIT)
+    
+    # TURN
     car.control_car(TURN_SPEED, -TURN_SPEED)
-    time.sleep(.94)
+    time.sleep(TURN_WAIT)
     
     car.stop()
-    time.sleep(.05)
+    time.sleep(STEP_WAIT)
+
+    if debug:
+        time.sleep(2)
+        # TURN
+        car.control_car(-TURN_SPEED, TURN_SPEED)
+        time.sleep(TURN_WAIT)
+    
+        car.stop()
+        time.sleep(STEP_WAIT)
+
+
+        # FORWARD
+        car.control_car(-MAX_LEFT, -MAX_RIGHT)
+        time.sleep(FORWARD_WAIT)
+
+        car.stop()
+        time.sleep(STEP_WAIT)
+    
+        
 
 # setup
 car = Car()
 car.set_servo(1, 90)
 time.sleep(0.5)
-car.set_servo(2, 110)
+car.set_servo(2, 100)
 time.sleep(0.5)
 
 # Go in circuit and record
@@ -33,12 +62,16 @@ camera.framerate = 24
 camera.start_recording('my_video.h264')
 
 # circuit
-car.control_car(MAX_SPEED, MAX_SPEED)
+car.control_car(MAX_LEFT, MAX_RIGHT)
 time.sleep(0.05)
-for i in range(4):
-    circ_leg()
+if DEBUG:
+    circ_leg(True)
+else:
+    for i in range(4):
+        circ_leg()
 
 car.stop()
+time.sleep(1)
 camera.stop_recording()
 
 del car
