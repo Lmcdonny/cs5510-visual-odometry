@@ -20,6 +20,8 @@ def circ_leg():
 
 # setup
 car = Car()
+car.set_servo(1, 80)
+time.sleep(0.5)
 
 # Go in circuit and record
 # record
