@@ -1,4 +1,4 @@
-from picamera
+import picamera
 from Car import Car
 import time
 
