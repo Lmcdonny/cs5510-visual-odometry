@@ -10,7 +10,7 @@ def circ_leg():
     time.sleep(2)
 
     car.stop()
-    time.sleep(.05)
+    time.sleep(.1)
 
     car.control_car(TURN_SPEED, -TURN_SPEED)
     time.sleep(.94)
@@ -20,14 +20,16 @@ def circ_leg():
 
 # setup
 car = Car()
-car.set_servo(1, 80)
+car.set_servo(1, 90)
+time.sleep(0.5)
+car.set_servo(2, 110)
 time.sleep(0.5)
 
 # Go in circuit and record
 # record
 camera = picamera.PiCamera()
-camera.resolution = (1280, 720)
-camera.framerate = 30
+camera.resolution = (640, 480)
+camera.framerate = 24
 camera.start_recording('my_video.h264')
 
 # circuit
