@@ -15,8 +15,8 @@ car = Car()
 # record
 camera = picamera.PiCamera()
 camera.resolution = (1280, 720)
-camera.start_recording('my_video.h264')
 camera.framerate = 30
+camera.start_recording('my_video.h264')
 
 # circuit
 for i in range(4):
