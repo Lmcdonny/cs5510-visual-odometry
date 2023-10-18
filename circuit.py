@@ -1,7 +1,7 @@
 from picamera import Picamera
 from picamera.encoders import H264Encoder
 from picamera.outputs import FileOutput
-from ~/raspbot_code/Car import Car
+from Car.py import Car
 import time
 
 # setup
