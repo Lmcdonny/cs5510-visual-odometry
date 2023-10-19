@@ -17,7 +17,7 @@
 
 ###    Our solution:
 
-    Using circuit.py, the robot moves in a square circuit and records the video in 'my_video.h264'. Afterward, we download the video from the robot to be used in our implementation of Task 1.
+Using circuit.py, the robot moves in a square circuit and records the video in 'my_video.h264'. Afterward, we download the video from the robot to be used in our implementation of Task 1.
 
 ###    Required packages and files:
 - picamera
