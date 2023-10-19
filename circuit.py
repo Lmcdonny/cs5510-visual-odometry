@@ -1,7 +1,11 @@
+'''
+
+'''
 import picamera
 from Car import Car
 import time
 
+##### Settings #####
 MAX_LEFT = 45
 MAX_RIGHT = 40
 TURN_SPEED = 80 
@@ -11,6 +15,7 @@ TURN_WAIT = 1.1
 STEP_WAIT = 0.25
 
 DEBUG = False
+VIDEO_NAME = 'my_video.h264'
 
 
 def circ_leg(debug=False):
@@ -47,19 +52,20 @@ def circ_leg(debug=False):
     
         
 
-# setup
+##### Car Setup #####
 car = Car()
 car.set_servo(1, 90)
 time.sleep(0.5)
 car.set_servo(2, 100)
 time.sleep(0.5)
 
+##### Circuit Execution #####
 # Go in circuit and record
 # record
 camera = picamera.PiCamera()
 camera.resolution = (640, 480)
 camera.framerate = 24
-camera.start_recording('my_video.h264')
+camera.start_recording(VIDEO_NAME)
 
 # circuit
 car.control_car(MAX_LEFT, MAX_RIGHT)
@@ -72,6 +78,7 @@ else:
 
 car.stop()
 time.sleep(1)
-camera.stop_recording()
 
+##### Cleanup #####
+camera.stop_recording()
 del car
