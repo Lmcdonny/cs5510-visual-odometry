@@ -65,13 +65,16 @@ time.sleep(0.5)
 ##### Circuit Execution #####
 camera.start_recording(VIDEO_NAME)
 camera.wait_recording(2)
-car.control_car(MAX_LEFT, MAX_RIGHT)
-camera.wait_recording(0.05)
-if DEBUG:
-    circ_leg(True)
-else:
-    for i in range(4):
-        circ_leg()
+# car.control_car(MAX_LEFT, MAX_RIGHT)
+# camera.wait_recording(0.05)
+# if DEBUG:
+#     circ_leg(True)
+# else:
+#     for i in range(4):
+#         circ_leg()
+
+car.control_car(40, 80)
+camera.wait_recording(5)
 
 car.stop()
 camera.wait_recording(1)
