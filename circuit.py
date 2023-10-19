@@ -17,21 +17,26 @@ STEP_WAIT = 0.25
 DEBUG = False
 VIDEO_NAME = 'my_video.h264'
 
+##### Camera Setup #####
+camera = picamera.PiCamera()
+camera.resolution = (640, 480)
+camera.framerate = 30
+
 
 def circ_leg(debug=False):
     # FORWARD
     car.control_car(MAX_LEFT, MAX_RIGHT)
-    time.sleep(FORWARD_WAIT)
+    camera.wait_recording(FORWARD_WAIT)
 
     car.stop()
-    time.sleep(STEP_WAIT)
+    camera.wait_recording(STEP_WAIT)
     
     # TURN
-    car.control_car(TURN_SPEED, -TURN_SPEED)
-    time.sleep(TURN_WAIT)
+    camera.wait_recording(TURN_SPEED, -TURN_SPEED)
+    camera.wait_recording(TURN_WAIT)
     
     car.stop()
-    time.sleep(STEP_WAIT)
+    camera.wait_recording(STEP_WAIT)
 
     if debug:
         time.sleep(2)
@@ -49,8 +54,6 @@ def circ_leg(debug=False):
 
         car.stop()
         time.sleep(STEP_WAIT)
-    
-        
 
 ##### Car Setup #####
 car = Car()
@@ -60,16 +63,9 @@ car.set_servo(2, 100)
 time.sleep(0.5)
 
 ##### Circuit Execution #####
-# Go in circuit and record
-# record
-camera = picamera.PiCamera()
-camera.resolution = (640, 480)
-camera.framerate = 24
 camera.start_recording(VIDEO_NAME)
-
-# circuit
 car.control_car(MAX_LEFT, MAX_RIGHT)
-time.sleep(0.05)
+camera.wait_recording(0.05)
 if DEBUG:
     circ_leg(True)
 else:
@@ -77,7 +73,7 @@ else:
         circ_leg()
 
 car.stop()
-time.sleep(1)
+camera.wait_recording(1)
 
 ##### Cleanup #####
 camera.stop_recording()
