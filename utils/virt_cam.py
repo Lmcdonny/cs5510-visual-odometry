@@ -36,7 +36,7 @@ def video_publisher(video_file_path):
 if __name__ == '__main__':
     try:
         # Specify the path to your video file here
-        video_file_path = 'path/to/your/video/file.mp4'
+        video_file_path = 'my_video.h264'
         video_publisher(video_file_path)
     except rospy.ROSInterruptException:
         pass
