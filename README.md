@@ -8,11 +8,12 @@
 
 ##### Our solution:
 
-[Files/packages/whatever used]
+Install ORB_SLAM3 github [here](https://github.com/UZ-SLAMLab/ORB_SLAM3)
 
 ### 2. Navigate in a Circuit Around the Room
 
 - Task: Using the basic mobility commands, make the robot move in a circuit around the room (can be teleop). Record the video and process off-board, stream the video to an offboard device, or use internal compute to calculate VO.
+
 - Requirement: The circuit should be reasonably precise, and the robot should not drift significantly from the planned path. Record the video and odometry data from the robot's persepective.
 
 ####    Our solution:
@@ -47,16 +48,14 @@ Using circuit.py, the robot moves in a circle circuit and records the video in '
     In the above example, the file will be downloaded from the robot to your shell's current directory
 
 3. Load into orbslam
+    Run the following command in your orb-slam directory
     
-    TODO
+        ./Examples/Monocular/mono_tum Vocabulary/ORBvoc.txt Examples/Monocular/TUM1.yaml [PATH_TO_SEQUENCE_FOLDER]
 
 ### 3. Analyze and Report
 
 - Task: Analyze the recorded data and compare the estimated trajectory with the actual path taken by the robot. (You can use an estimate based on whatever)
 - Requirement: Submit a comprehensive report detailing your findings, methodology, any challenges faced, and possible improvements.
-
-    5. Load into orbslam
-        * `./Examples/Monocular/mono_tum Vocabulary/ORBvoc.txt Examples/Monocular/TUM1.yaml PATH_TO_SEQUENCE_FOLDER`
 
 3. Analyze and Report
 
@@ -64,4 +63,5 @@ Using circuit.py, the robot moves in a circle circuit and records the video in '
     - Requirement: Submit a comprehensive report detailing your findings, methodology, any challenges faced, and possible improvements.
 
 ###     Our Analysis
+
 See assignment submission
