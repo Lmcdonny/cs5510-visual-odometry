@@ -64,7 +64,7 @@ Using circuit.py, the robot moves in a square circuit and records the video in '
         In the above example, the file will be downloaded from the robot to your shell's current directory
 
     5. Load into orbslam
-        TODO
+        * `./Examples/Monocular/mono_tum Vocabulary/ORBvoc.txt Examples/Monocular/TUM1.yaml PATH_TO_SEQUENCE_FOLDER`
 
 3. Analyze and Report
 
@@ -72,4 +72,4 @@ Using circuit.py, the robot moves in a square circuit and records the video in '
     - Requirement: Submit a comprehensive report detailing your findings, methodology, any challenges faced, and possible improvements.
 
 ###     Our Analysis
-TODO
+See assignment submission
