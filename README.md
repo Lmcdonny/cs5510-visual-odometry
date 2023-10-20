@@ -1,67 +1,59 @@
 # cs5510-visual-odometry
 #### CS5510 Assignment 2: Visual Odometry Implementation
 
-1. Implement Visual Odometry Algorithm
+### 1. Implement Visual Odometry Algorithm
 
-    - Task: Develop a Python program to compute the visual odometry of the robot.
-    - Requirement: The program should be able to estimate the robot’s trajectory by analyzing the camera images.
+- Task: Develop a Python program to compute the visual odometry of the robot.
+- Requirement: The program should be able to estimate the robot’s trajectory by analyzing the camera images.
 
-    Our solution:
+##### Our solution:
 
-        [Files/packages/whatever used]
+[Files/packages/whatever used]
 
-2. Navigate in a Circuit Around the Room
+### 2. Navigate in a Circuit Around the Room
 
-    - Task: Using the basic mobility commands, make the robot move in a circuit around the room (can be teleop). Record the video and process off-board, stream the video to an offboard device, or use internal compute to calculate VO.
-    - Requirement: The circuit should be reasonably precise, and the robot should not drift significantly from the planned path. Record the video and odometry data from the robot's persepective.
+- Task: Using the basic mobility commands, make the robot move in a circuit around the room (can be teleop). Record the video and process off-board, stream the video to an offboard device, or use internal compute to calculate VO.
+- Requirement: The circuit should be reasonably precise, and the robot should not drift significantly from the planned path. Record the video and odometry data from the robot's persepective.
 
-###    Our solution:
+####    Our solution:
 
-Using circuit.py, the robot moves in a square circuit and records the video in 'my_video.h264'. Afterward, we download the video from the robot to be used in our implementation of Task 1.
+Using circuit.py, the robot moves in a circle circuit and records the video in 'my_video.h264'. Afterward, we download the video from the robot to be used in our implementation of Task 1.
 
-###    Required packages and files:
+####    Required packages and files:
 - picamera
 - time
 - cv2
 - smbus
 - Car.py (whose github can be found [here](https://github.com/DIRECTLab/raspbot-code))
 
-###    Instructions:
+####    Instructions:
 
-    1. Calibrate the robot
-        a. Forward motion:
-            i. Run `circuit.py` with variable `DEBUG` set to `True` 
+1. Execute the program
 
-            ii. Adjust MAX_LEFT and MAX_RIGHT to specify how fast each wheel should spin.
+    Place the robot in an open indoor area. On the robot, execute `circuit.py` and the robot will go forward for the previously specified amount of time and turn right.
 
-            iii. Repeat until the car moves forward in a straight line
+2. Download the video
 
-        b. 90 degree turn:
-            i. Run `circuit.py` with variable `DEBUG` set to `True`
+    Our method of downloading the video was as follows:
 
-            ii. Adjust TURN_WAIT and TURN_SPEED to specify the duration and speed of the turn respectively
+    a. Obtain the path on your robot leading to the video file
 
-            iii. Repeat until the car accurately completes a 90 degree turn
+    b. On the device you wish to download the video to, type the following command into a bash shell:
 
-    2. Set variables
-        a. Set `DEBUG` to False (if it isn't already)
-        b. Adjust `FORWARD_WAIT` to specify the size of the square path the robot will take
-        c. Adjust `VIDEO_NAME` to change the name of the recorded video
+        scp pi@[robot_ip]:[path_to_file] [new_file_location]
 
-        NOTE: In order for the video to work with our implementation of orbslam, the extension of your video name must end in `.h264`
-    3. Execute the program
-        Place the robot in an open indoor area. On the robot, execute `circuit.py` and the robot will go forward for the previously specified amount of time and turn right.
+        ex: scp pi@192.168.137.71:/home/pi/assn2/my_video.h264 .
 
-    4. Download the video
-        Our method of downloading the video was as follows:
-        a. Obtain the path on your robot leading to the video file
-        b. On the device you wish to download the video, type the following command into a bash shell:
+    In the above example, the file will be downloaded from the robot to your shell's current directory
 
-            `scp pi@[robot_ip]:[path_to_file] [new_file_location]`
+3. Load into orbslam
+    
+    TODO
 
-            ex: `scp pi@192.168.137.71:/home/pi/assn2/my_video.h264 .`
+### 3. Analyze and Report
 
-        In the above example, the file will be downloaded from the robot to your shell's current directory
+- Task: Analyze the recorded data and compare the estimated trajectory with the actual path taken by the robot. (You can use an estimate based on whatever)
+- Requirement: Submit a comprehensive report detailing your findings, methodology, any challenges faced, and possible improvements.
 
     5. Load into orbslam
         * `./Examples/Monocular/mono_tum Vocabulary/ORBvoc.txt Examples/Monocular/TUM1.yaml PATH_TO_SEQUENCE_FOLDER`
